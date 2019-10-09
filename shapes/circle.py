@@ -16,3 +16,14 @@ class Circle(Shape):
 
     def __repr__(self):
         return self.color.name + ' ' + self.__class__.__name__ + ' (radius: ' + str(self.radius) + ')'
+
+    def __hash__(self):
+        hash = 7
+        hash = 31*hash + self.color.value
+        hash = 31*hash + self.radius
+        return hash
+
+    def __eq__(self, other):
+        if self.__class__ != other.__class__:
+            return False
+        return self.color == other.color and self.radius == other.radius

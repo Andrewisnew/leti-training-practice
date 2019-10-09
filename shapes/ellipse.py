@@ -19,3 +19,13 @@ class Ellipse(Circle):
 
     def __repr__(self):
         return self.color.name + ' ' + self.__class__.__name__ + ' (radius: ' + str(self.radius) + ', second radius: ' + str(self.second_radius) + ')'
+
+    def __hash__(self):
+        hash = super().__hash__()
+        hash = 31*hash + self.second_radius
+        return hash
+
+    def __eq__(self, other):
+        if self.__class__ != other.__class__:
+            return False
+        return self.color == other.color and self.radius == other.radius and self.second_radius == other.second_radius
